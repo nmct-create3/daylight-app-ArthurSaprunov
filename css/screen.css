@@ -8,8 +8,10 @@
 
 :root {
     /* colors */
-
+    --color-front: #0F3557;
+    --color-back: #CCE7FF;
     /* opacity */
+    --opacity: 0.6;
 
     /* transitions */
 }
@@ -27,10 +29,14 @@
 html {
     font-size: 16px;
     line-height: 1.5;
-    font-family: Helvetica, arial, sans-serif;
+    font-family: 'Work Sans', serif;
+    font-feature-settings: "zero" 1; /* WERKT NIET */
+    font-variant-numeric: slashed-zero; 
     box-sizing: border-box;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
+    background-color: var(--color-back);
+    color: var(--color-front);
 }
 
 *,
@@ -249,7 +255,7 @@ input::placeholder {
 */
 
 .c-logo {
-
+    display: flex;
 }
 
 /*
@@ -259,7 +265,12 @@ input::placeholder {
 */
 
 .c-sun {
-
+    width: 20px;
+    height: 20px;
+    fill: var(--color-front);
+    align-self: center;
+    margin-right: 8px;
+    
 }
 
 .c-logo .c-sun {
@@ -272,11 +283,75 @@ input::placeholder {
     Main app wrapper
 */
 
+.c-app{
+    max-width: 400px;
+    padding-top: 32px;
+    margin: auto;
+    min-height: calc(100vh - 32px);
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.c-app__summary{
+    font-size: 28px;
+    line-height: 40px;
+}
+
 /*
     Component: Horizon
     ---
     Horizon with sun visualisation
 */
+
+.c-horizon{
+    margin-top: auto;
+    padding: auto;
+}
+
+
+.c-horizon__sun {
+    position: absolute;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 40px;
+}
+
+.c-horizon__sun::before{
+    content: attr(data-time);
+    display: block;
+    margin-bottom: 8px;
+    align-content: center;
+}
+
+.c-horizon__sky-wrapper {
+    position: relative;
+    height: 200px;
+    overflow: hidden;
+}
+
+.c-horizon__sky {
+    position: relative;
+    height: 100%;
+}
+
+.c-horizon__line{
+    border-top: 1px solid var(--color-front);
+    padding: 1px;
+    margin-bottom: 8px;
+    width: 100%;
+
+
+
+}
+
+.c-horizon__time{
+    font-size: 12px;
+    line-height: 14px;
+    padding-top: 8px;
+}
 
 /*------------------------------------*\
 #UTILITIES
@@ -286,6 +361,10 @@ input::placeholder {
     Utilities: Mute
     Mute with opacity
 */
+
+.u-muted{
+    opacity: var(--opacity);
+}
 
 /*------------------------------------*\
 #STATES
